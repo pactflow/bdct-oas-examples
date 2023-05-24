@@ -1,0 +1,65 @@
+openapi: 3.0.1
+info:
+  title: anyOf / oneOf example
+  description: Demonstrate the valid use of anyOf and oneOf
+  version: 1.0.0
+paths:
+  /animals/{id}:
+    get:
+      summary: Find animal by ID
+      description: Returns a single animal
+      operationId: getAnimalByID
+      parameters:
+      - name: id
+        in: path
+        description: ID of animal to get
+        schema:
+          type: string
+        required: true
+        example: "10"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            "application/json":
+              schema:
+                additionalProperties: true # <- Take note!
+                anyOf:
+                  - $ref: '#/components/schemas/Cat'
+                  - $ref: '#/components/schemas/Dog'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: animal not found
+          content: {}
+components:
+  schemas:
+    Dog:
+      type: object
+      required:
+        - name
+        - owner
+        - bark
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        bark:
+          type: string
+    Cat:
+      type: object
+      required:
+        - name
+        - owner
+        - meow
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        meow:
+          type: string
