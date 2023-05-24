@@ -1,0 +1,100 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "anyOf / oneOf example",
+    "description": "Demonstrate the anyOf and oneOf issue",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/animals/{id}": {
+      "get": {
+        "summary": "Find animal by ID",
+        "description": "Returns a single animal",
+        "operationId": "getAnimalByID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of animal to get",
+            "schema": { "type": "string" },
+            "required": true,
+            "example": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "required": ["pet_type"],
+                      "discriminator": { "propertyName": "pet_type" },
+                      "properties": {
+                        "pet_type": { "type": "string" },
+                        "hunts": { "type": "boolean" },
+                        "age": { "type": "integer" }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "required": ["pet_type"],
+                      "discriminator": { "propertyName": "pet_type" },
+                      "properties": {
+                        "pet_type": { "type": "string" },
+                        "bark": { "type": "boolean" },
+                        "breed": {
+                          "type": "string",
+                          "enum": ["Dingo", "Husky", "Retriever", "Shepherd"]
+                        }
+                      }
+                    }
+                  ],
+                  "discriminator": { "propertyName": "pet_type" }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid ID supplied", "content": {} },
+          "404": { "description": "Animal not found", "content": {} }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Pet": {
+        "type": "object",
+        "required": ["pet_type"],
+        "properties": { "pet_type": { "type": "string" } },
+        "discriminator": { "propertyName": "pet_type" }
+      },
+      "Dog": {
+        "type": "object",
+        "required": ["pet_type"],
+        "discriminator": { "propertyName": "pet_type" },
+        "properties": {
+          "pet_type": { "type": "string" },
+          "bark": { "type": "boolean" },
+          "breed": {
+            "type": "string",
+            "enum": ["Dingo", "Husky", "Retriever", "Shepherd"]
+          }
+        }
+      },
+      "Cat": {
+        "type": "object",
+        "required": ["pet_type"],
+        "discriminator": { "propertyName": "pet_type" },
+        "properties": {
+          "pet_type": { "type": "string" },
+          "hunts": { "type": "boolean" },
+          "age": { "type": "integer" }
+        }
+      }
+    }
+  }
+}
