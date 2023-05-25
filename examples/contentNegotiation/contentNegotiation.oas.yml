@@ -1,0 +1,62 @@
+openapi: 3.0.2
+info:
+  title: Content Negotiation Example
+  version: 1.0.0
+  description: Content Negotiation Example
+paths:
+  /animals/{id}:
+    get:
+      summary: Get Animal
+      operationId: getAnimal
+      responses:
+        '200':
+          description: Resource created.
+          content:
+            application/json;version=1.0.0:
+              schema:
+                $ref: '#/components/schemas/Animal'
+            application/json;version=2.0.0:
+              schema:
+                $ref: '#/components/schemas/AnimalV2'
+      parameters:
+      - name: id
+        in: path
+        description: ID of animal to get
+        schema:
+          type: string
+        required: true
+        example: "10"                
+components:
+  schemas:
+    AnimalV2:
+      type: object
+      title: AnimalV2
+      description: Animal
+      required:
+        - name
+        - owner
+        - species
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        species:
+          type: string
+    Animal:
+      type: object
+      title: Animal
+      description: Animal
+      required:
+        - name
+        - owner
+        - genus
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        genus:
+          type: string

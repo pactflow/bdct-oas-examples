@@ -1,0 +1,56 @@
+openapi: 3.0.2
+info:
+  title: Media Types Example
+  version: 1.6.1
+  description: Media Types Example
+paths:
+  '/animals':
+    post:
+      summary: Create Animal
+      operationId: createAnimal
+      requestBody:
+        content:
+          application/json;version=1.0.0:
+            schema:
+              $ref: '#/components/schemas/Animal'
+          application/json;version=2.0.0:
+            schema:
+              $ref: '#/components/schemas/AnimalV2'
+        required: true
+      responses:
+        '201':
+          description: Resource created.
+components:
+  schemas:
+    AnimalV2:
+      type: object
+      title: AnimalV2
+      description: Animal
+      required:
+        - name
+        - owner
+        - species
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        species:
+          type: string
+    Animal:
+      type: object
+      title: Animal
+      description: Animal
+      required:
+        - name
+        - owner
+        - genus
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        genus:
+          type: string

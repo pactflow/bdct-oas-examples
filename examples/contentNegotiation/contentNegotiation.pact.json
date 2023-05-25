@@ -1,0 +1,46 @@
+{
+  "consumer": {
+    "name": "animal-consumer"
+  },
+  "provider": {
+    "name": "animal-provider"
+  },
+  "interactions": [
+    {
+      "description": "GET /animals/1 -> 200",
+      "request": {
+        "method": "GET",
+        "path": "/animals/1",
+        "headers": {
+          "accept": "application/json;version=1.0.0"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "name": "Rover",
+          "owner": "Drover",
+          "genus": "Canis"
+        }
+      }
+    },
+    {
+      "description": "GET /animals/2 (V2) -> 200",
+      "request": {
+        "method": "GET",
+        "path": "/animals/2",
+        "headers": {
+          "accept": "application/json;version=2.0.0"
+        }
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "name": "Rover",
+          "owner": "Drover",
+          "species": "C. familiaris"
+        }
+      }
+    }
+  ]
+}
