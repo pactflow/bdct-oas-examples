@@ -3,7 +3,7 @@
     "name": "animal-consumer"
   },
   "provider": {
-    "name": "animal-provider"
+    "name": "content-negotiation-provider"
   },
   "interactions": [
     {

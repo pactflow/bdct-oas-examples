@@ -3,7 +3,7 @@
     "name": "thing-consumer"
   },
   "provider": {
-    "name": "thing-provider"
+    "name": "inheritance-provider"
   },
   "interactions": [
     {

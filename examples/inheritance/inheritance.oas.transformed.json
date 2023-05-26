@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.1.0",
   "info": {
     "title": "anyOf / oneOf example",
     "description": "Demonstrate the anyOf and oneOf issue",
@@ -34,7 +34,10 @@
                       "required": ["pet_type"],
                       "discriminator": { "propertyName": "pet_type" },
                       "properties": {
-                        "pet_type": { "type": "string" },
+                        "pet_type": {
+                          "type": "string",
+                          "enum": ["Cat", "Dog"]
+                        },
                         "hunts": { "type": "boolean" },
                         "age": { "type": "integer" }
                       }
@@ -44,7 +47,10 @@
                       "required": ["pet_type"],
                       "discriminator": { "propertyName": "pet_type" },
                       "properties": {
-                        "pet_type": { "type": "string" },
+                        "pet_type": {
+                          "type": "string",
+                          "enum": ["Cat", "Dog"]
+                        },
                         "bark": { "type": "boolean" },
                         "breed": {
                           "type": "string",
@@ -69,7 +75,9 @@
       "Pet": {
         "type": "object",
         "required": ["pet_type"],
-        "properties": { "pet_type": { "type": "string" } },
+        "properties": {
+          "pet_type": { "type": "string", "enum": ["Cat", "Dog"] }
+        },
         "discriminator": { "propertyName": "pet_type" }
       },
       "Dog": {
@@ -77,7 +85,7 @@
         "required": ["pet_type"],
         "discriminator": { "propertyName": "pet_type" },
         "properties": {
-          "pet_type": { "type": "string" },
+          "pet_type": { "type": "string", "enum": ["Cat", "Dog"] },
           "bark": { "type": "boolean" },
           "breed": {
             "type": "string",
@@ -90,7 +98,7 @@
         "required": ["pet_type"],
         "discriminator": { "propertyName": "pet_type" },
         "properties": {
-          "pet_type": { "type": "string" },
+          "pet_type": { "type": "string", "enum": ["Cat", "Dog"] },
           "hunts": { "type": "boolean" },
           "age": { "type": "integer" }
         }

@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: anyOf / oneOf example
   description: Demonstrate the anyOf and oneOf issue
@@ -44,6 +44,7 @@ components:
       properties:
         pet_type:
           type: string
+          enum: [Cat, Dog] # <- take note. If this isn't specified it can accept any object
       discriminator:
         propertyName: pet_type
     Dog:     # "Dog" is a value for the pet_type property (the discriminator value)
