@@ -6,7 +6,7 @@ info:
 paths:
   /basic:
     get:
-      summary: Basic auth endpoint
+      summary: Basic authenticated endpoint
       description: Endpoint secured by basic auth
       operationId: getBasicAuth
       responses:
@@ -20,7 +20,7 @@ paths:
         - BasicAuth: [Admin]
   /bearer:
     get:
-      summary: Bearer auth endpoint
+      summary: Bearer authenticated endpoint
       description: Endpoint secured by Bearer auth
       operationId: getBearerAuth
       responses:
@@ -34,7 +34,7 @@ paths:
         - BearerAuth: [Admin]
   /apikey:
     get:
-      summary: ApiKey auth endpoint
+      summary: ApiKey authenticated endpoint
       description: Endpoint secured by ApiKey auth
       operationId: getApiKeyAuth
       responses:
@@ -46,9 +46,23 @@ paths:
           description: unauthorized
       security:
         - ApiKeyAuth: [Admin]
+  /apikey/cookie:
+    get:
+      summary: ApiKeyCookie authenticated endpoint
+      description: Endpoint secured by an ApiKey in a secure cookie
+      operationId: getApiKeyAuthCookie
+      responses:
+        "200":
+          description: successful operation
+        "401":
+          description: unauthenticated
+        "403":
+          description: unauthorized
+      security:
+        - ApiKeyCookieAuth: [Admin]
   /mutualtls:
     get:
-      summary: MutualTLS auth endpoint
+      summary: MutualTLS authenticated endpoint
       description: Endpoint secured by MutualTLS auth
       operationId: getMutualTLSAuth
       responses:
@@ -62,7 +76,7 @@ paths:
         - MutualTLS: [Admin]
   /oidc:
     get:
-      summary: OIDC auth endpoint
+      summary: OIDC authenticated endpoint
       description: Endpoint secured by OIDC auth
       operationId: getOIDCAuth
       responses:
@@ -76,7 +90,7 @@ paths:
         - OpenID: [Admin]
   /oauth2:
     get:
-      summary: OAuth2 auth endpoint
+      summary: OAuth2 authenticated endpoint
       description: Endpoint secured by OAuth2 auth
       operationId: getOAuth2Auth
       responses:
@@ -90,7 +104,7 @@ paths:
         - OAuth2: [Admin]
   # /multiple/apitokens:
   #   get:
-  #     summary: Multiple auth endpoint
+  #     summary: Multiple authenticated endpoint
   #     description: Endpoint secured by Multiple api tokens that must all be satisfied
   #     operationId: getMultipleApiTokenAuth
   #     responses:
@@ -105,7 +119,7 @@ paths:
   #         ApiKey: [Admin]
   # /multiple/and:
   #   get:
-  #     summary: Multiple auth endpoint
+  #     summary: Multiple authenticated endpoint
   #     description: Endpoint secured by Multiple auth mechanisms that must all be satisfied
   #     operationId: getMultipleAuth
   #     responses:
@@ -122,7 +136,7 @@ paths:
   #         BearerAuth: [Admin]
   # /multiple/or:
   #   get:
-  #     summary: OAuth2 auth endpoint
+  #     summary: OAuth2 authenticated endpoint
   #     description: Endpoint secured by OAuth2 auth
   #     operationId: getOAuth2Auth
   #     responses:
@@ -174,6 +188,10 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
+    ApiKeyCookieAuth:
+      type: apiKey
+      in: cookie
+      name: ASECURESESSIONID
     ApiKeyAuth:
       type: apiKey
       in: header

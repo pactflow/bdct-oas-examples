@@ -115,6 +115,42 @@
       }
     },
     {
+      "description": "a request to a cookie-based apikey auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/apikey/cookie",
+        "headers": {
+          "Cookie": "ASECURESESSIONID: dXNlcjpwYXNzd29yZAo="
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a cookie-based apikey auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/apikey/cookie",
+        "headers": {
+          "Cookie": "ASECURESESSIONID: YmFkOnBhc3N3b3JkCg=="
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a cookie-based apikey auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/apikey/cookie"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
       "description": "a request to a mutualtls auth endpoint",
       "request": {
         "method": "GET",
