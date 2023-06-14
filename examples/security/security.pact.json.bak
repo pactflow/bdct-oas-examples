@@ -1,0 +1,328 @@
+{
+  "consumer": {
+    "name": "animal-consumer"
+  },
+  "provider": {
+    "name": "animal-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to a basic auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/basic",
+        "headers": {
+          "Authorization": "Basic dXNlcjpwYXNzd29yZAo="
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a basic auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/basic",
+        "headers": {
+          "Authorization": "Basic YmFkOnBhc3N3b3JkCg=="
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a basic auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/basic"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to a bearer auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/bearer",
+        "headers": {
+          "Authorization": "Bearer dXNlcjpwYXNzd29yZAo="
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a bearer auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/bearer",
+        "headers": {
+          "Authorization": "Bearer YmFkOnBhc3N3b3JkCg=="
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a bearer auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/bearer"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to a apikey auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/apikey",
+        "headers": {
+          "X-API-Key": "dXNlcjpwYXNzd29yZAo="
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a apikey auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/apikey",
+        "headers": {
+          "X-API-Key": "YmFkOnBhc3N3b3JkCg=="
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a apikey auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/apikey"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to a mutualtls auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/mutualtls"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a mutualtls auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/mutualtls"
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a mutualtls auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/mutualtls"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to a oidc auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/oidc"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a oidc auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/oidc"
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a oidc auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/oidc"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to a oauth2 auth endpoint",
+      "request": {
+        "method": "GET",
+        "path": "/oauth2"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to a oauth2 auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/oauth2"
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to a oauth2 auth endpoint with no credentials",
+      "request": {
+        "method": "GET",
+        "path": "/oauth2"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to an endpoint requiring two API Keys with valid credentials",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/apitokens",
+        "headers": {
+          "X-App-ID": "Some client ID",
+          "X-API-Key": "some key"
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to an endpoint requiring two API Keys with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/apitokens",
+        "headers": {
+          "X-App-ID": "Some client ID",
+          "X-API-Key": "some insufficient key"
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to an endpoint requiring two API Keys with missing credentials",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/apitokens"
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to an endpoint with multiple required auth mechanisms and valid credentials",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/and",
+        "headers": {
+          "Authorization": "Bearer dXNlcjpwYXNzd29yZAo=",
+          "X-API-Key": "some key"
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to an endpoint with multiple required auth mechanisms auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/and",
+        "headers": {
+          "Authorization": "Bearer dXNlcjpwYXNzd29yZAo=",
+          "X-API-Key": "some insufficient key"
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to an endpoint with multiple required auth mechanisms with missing credentials",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/and",
+        "headers": {
+          "X-API-Key": "missing Bearer token"
+        }
+      },
+      "response": {
+        "status": 401
+      }
+    },
+    {
+      "description": "a request to an endpoint with multiple alternative auth mechanisms and valid credentials",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/or",
+        "headers": {
+          "X-API-Key": "some key"
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to an endpoint with multiple alternative auth mechanisms auth endpoint with credentials lacking required scope",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/or",
+        "headers": {
+          "X-API-Key": "some insufficient key"
+        }
+      },
+      "response": {
+        "status": 403
+      }
+    },
+    {
+      "description": "a request to an endpoint with multiple alternative auth mechanisms with missing credentials",
+      "request": {
+        "method": "GET",
+        "path": "/multiple/or"
+      },
+      "response": {
+        "status": 401
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
