@@ -1,6 +1,6 @@
-# Example BDCT comparisons for OAS with logical keywords 
+# PactFlow BDCT examples
 
-This repository showcases a few examples of BDCT scenarios that tend to trip people up, and the strategies used to fix them.
+This repository showcases use cases and features in OpenAPI, how they are compared to pact files and in some cases, how to ensure you get the most out of the comparison checks.
 
 | Example | Problem | 
 |---------|---------|
