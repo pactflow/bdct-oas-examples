@@ -1,0 +1,168 @@
+{
+  "consumer": {
+    "name": "param-consumer"
+  },
+  "provider": {
+    "name": "param-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request using simple style with single value parameter (integer > 7)",
+      "request": {
+        "method": "GET",
+        "path": "/path/style/simple/single/value/1"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using simple style with single value parameter (boolean)",
+      "request": {
+        "method": "GET",
+        "path": "/path/style/simple/single/boolean/true"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using simple style with exploded path parameters",
+      "request": {
+        "method": "GET",
+        "path": "/path/style/simple/explode/true/1,2,3/"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using parameters to serialise an object (with pact query object)",
+      "request": {
+        "method": "GET",
+        "path": "/query/object",
+        "XXXquery": {
+          "person[id]": "1",
+          "person[name]": "fred",
+          "person[address][street]": "123 Fake St",
+          "person[address][city]": "Melbourne",
+          "person[address][state]": "VIC",
+          "person[address][postcode]": "3000"
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using parameters to serialise an object (with pact query string)",
+      "request": {
+        "method": "GET",
+        "path": "/query/object",
+        "Aquery": "person[id]=1&person[name]=fred&person[address][street]some%20street&person[address][city]=Melbourne&person[address][state]=VIC&person[address][postcode]=3000"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using simple style with non-exploded path parameters",
+      "request": {
+        "method": "GET",
+        "path": "/path/style/simple/explode/false/1,2,3/"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with exploded query parameters",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/explode/true",
+        "query": {
+          "id": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with exploded query parameters",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/explode/true",
+        "query": "id=1&id=2&id=3"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with exploded query parameters",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/explode/true",
+        "query": {
+          "id": [
+            "1",
+            "2",
+            "3"
+          ]
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with exploded query parameters",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/explode/true",
+        "query": "id=1&id=2&id=3"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with non-exploded query parameters",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/explode/false",
+        "query": {
+          "id": [
+            "1",
+            "2",
+            "3"
+          ]
+        }        
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with non-exploded query parameters",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/explode/false",
+        "query": "id=1:,2,[]3"
+      },
+      "response": {
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: xml example
+  description: Demonstrate the use of XML bodies
+  version: 1.0.0
+paths:
+  '/animals':
+    post:
+      summary: Create Animal
+      operationId: createAnimal
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Animal'
+            encoding:
+              payload:
+                contentType: application/json              
+      responses:
+        '201':
+          description: Resource created.
+  '/upload/multipart/':
+    post:
+      summary: Upload multiple files
+      operationId: uploadFiles
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                orderId:
+                  type: integer
+                userId:
+                  type: integer
+                fileName:
+                  type: string
+                  format: binary          
+      responses:
+        '200':
+          description: successful operation
+  '/upload/file':
+    post:
+      summary: Upload multiple files
+      operationId: uploadFiles
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: array
+                  items:
+                    type: string
+                    format: binary            
+      responses:
+        '200':
+          description: successful operation
+  '/binary':
+    get:
+      summary: Get binary content
+      operationId: getBinaryContent
+      responses:
+        '200':
+          description: successful operation
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+
+components:
+  schemas:
+    Animal:
+      type: object
+      title: Animal
+      description: Animal
+      required:
+        - name
+        - owner
+        - genus
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        genus:
+          type: string

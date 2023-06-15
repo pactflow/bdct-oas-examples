@@ -1,0 +1,78 @@
+{
+  "consumer": {
+    "name": "forms-consumer"
+  },
+  "provider": {
+    "name": "forms-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to create a new animal with x-www-form-urlencoded data",
+      "request": {
+        "body": "",
+        "comment": "note the body above is empty but still passes validation. The correct body is in the Xbody field",
+        "Xbody": "name=Scratchy&genus=Cat&owner=Cat%20Lady",
+        "headers": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "method": "POST",
+        "path": "/animals"
+      },
+      "response": {
+        "status": 201
+      }
+    },
+    {
+      "description": "a request upload a multipart request",
+      "request": {
+        "body": "",
+        "comment": "note the body above is empty but still passes validation. The correct body should be encoded in 'body'",
+        "headers": {
+          "Content-Type": "multipart/form-data"
+        },
+        "method": "POST",
+        "path": "/upload/multipart"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request upload multiple files",
+      "request": {
+        "body": "",
+        "comment": "note the body above is empty but still passes validation. The correct body should be encoded in 'body'",
+        "headers": {
+          "Content-Type": "multipart/form-data"
+        },
+        "method": "POST",
+        "path": "/upload/file"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request to get binary content",
+      "request": {
+        "headers": {
+          "Accept": "image/png"
+        },
+        "method": "GET",
+        "path": "/binary"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "image/png"
+        },
+        "body": "some base64 encoded body (this is the format pact uses, which various across spec versions)"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

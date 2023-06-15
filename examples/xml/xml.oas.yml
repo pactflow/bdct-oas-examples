@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: xml example
+  description: Demonstrate the use of XML bodies
+  version: 1.0.0
+paths:
+  /animals/{id}:
+    get:
+      summary: Find animal by ID
+      description: Returns a single animal
+      operationId: getAnimalByID
+      parameters:
+      - name: id
+        in: path
+        description: ID of animal to get
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 10
+        required: true
+        example: 7
+      responses:
+        "200":
+          description: successful operation
+          content:
+            "application/xml":
+              schema:
+                $ref: '#/components/schemas/Cat'
+
+components:
+  schemas:
+    Cat:
+      type: object
+      required:
+        - id
+        - name
+        - owner
+        - meow
+      additionalProperties: false
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        owner:
+          type: string
+        meow:
+          type: string

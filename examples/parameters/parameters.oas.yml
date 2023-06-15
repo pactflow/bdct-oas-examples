@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: parameter example
+  description: Demonstrate the supported parameter serialisation mechanisms
+  version: 1.0.0
+paths:
+  /path/style/simple/single/value/{id}/:
+    get:
+      summary: Path style form with single value parameter
+      description: Path style form with single value parameter
+      operationId: getSimplePathWithSingleValueParameter
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          minimum: 7
+      responses:
+        "200":
+          description: successful operation
+  /path/style/simple/single/boolean/{id}/:
+    get:
+      summary: Path style form with single value boolean parameter
+      description: Path style form with single value boolean parameter
+      operationId: getSimplePathWithSingleValueParameter
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: successful operation
+  /path/style/simple/explode/true/{id}/:
+    get:
+      summary: Path style form with explode true
+      description: Path style form with explode true
+      operationId: getPathStyleFormExplodeTrue
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+          minItems: 1
+        style: simple
+        explode: true      
+      responses:
+        "200":
+          description: successful operation
+  /path/style/simple/explode/false/{id}/:
+    get:
+      summary: Path style form with explode false
+      description: Path style form with explode false
+      operationId: getPathStyleFormExplodefalse
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+          minItems: 1
+        style: simple
+        explode: false
+        allowReserved: false
+      responses:
+        "200":
+          description: successful operation
+  /query/style/form/explode/true:
+    get:
+      summary: Query style form with explode true
+      description: Query style form with explode true
+      operationId: getQueryStyleFormExplodeTrue
+      parameters:
+      - in: query
+        name: id
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+          minItems: 1
+        style: form
+        explode: true      
+      responses:
+        "200":
+          description: successful operation
+  /query/style/form/explode/false:
+    get:
+      summary: Query style form with explode false
+      description: Query style form with explode false
+      operationId: getQueryStyleFormExplodefalse
+      parameters:
+      - in: query
+        name: id
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+          minItems: 1
+        style: form
+        explode: false
+        allowReserved: false
+      responses:
+        "200":
+          description: successful operation
+  /query/object:
+    get:
+      summary: Query style form to test object
+      description: Query style form to test object
+      operationId: getQueryStyleObject
+      parameters:
+      - in: query
+        name: person
+        required: true
+        schema: 
+          $ref: '#/components/schemas/Person'
+        style: deepObject
+        explode: true
+      responses:
+        "200":
+          description: successful operation
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - id
+        - name
+      additionalProperties: false
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        address: 
+          $ref: '#/components/schemas/Address'
+    Address:
+      type: object
+      required:
+        - street
+        - city
+        - state
+        - postcode
+      additionalProperties: false
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postcode:
+          type: integer

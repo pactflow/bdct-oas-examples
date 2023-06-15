@@ -1,0 +1,34 @@
+{
+  "consumer": {
+    "name": "xml-consumer"
+  },
+  "provider": {
+    "name": "xml-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to get a Cat",
+      "request": {
+        "method": "GET",
+        "path": "/animals/10",
+        "headers": {
+          "Accept": "application/xml"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/xml"
+        },
+        "body": "",
+        "comment": "Above is a blank line and does not match the real schema. Below is a real example that matches the schema.",
+        "XCorrectBody": "<?xml version='1.0'?><ns1:cat xmlns:ns1='http://some.namespace/and/more/stuff' id='1' name='Scratchy' meow='loud' owner='Crazy Cat Lady'></ns1:cat>"
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

@@ -1,9 +1,9 @@
 {
   "consumer": {
-    "name": "animal-consumer"
+    "name": "security-consumer"
   },
   "provider": {
-    "name": "animal-provider"
+    "name": "security-provider"
   },
   "interactions": [
     {
