@@ -152,35 +152,6 @@ paths:
   #       - ApiKey: [Admin]
   #       - BearerAuth: [Admin]
 components:
-  schemas:
-    Dog:
-      type: object
-      required:
-        - name
-        - owner
-        - bark
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-        owner:
-          type: string
-        bark:
-          type: string
-    Cat:
-      type: object
-      required:
-        - name
-        - owner
-        - meow
-      additionalProperties: false
-      properties:
-        name:
-          type: string
-        owner:
-          type: string
-        meow:
-          type: string
   securitySchemes:
     BasicAuth:
       type: http
