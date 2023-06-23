@@ -1,0 +1,67 @@
+openapi: 3.1.0
+info:
+  title: anyOf / oneOf example
+  description: Demonstrate the valid use of anyOf and oneOf
+  version: 1.0.0
+servers:
+  - url: /v1 # <- ignored by PactFlow
+paths:
+  /animals/{id}: # <- Pact tests must match this path, the server URL is not considered
+    get:
+      summary: Find animal by ID
+      description: Returns a single animal
+      operationId: getAnimalByID
+      parameters:
+      - name: id
+        in: path
+        description: ID of animal to get
+        schema:
+          type: string
+        required: true
+        example: "10"
+      responses:
+        "200":
+          description: successful operation
+          content:
+            "application/json":
+              schema:
+                additionalProperties: true # <- Take note!
+                oneOf:
+                  - $ref: '#/components/schemas/Cat'
+                  - $ref: '#/components/schemas/Dog'
+        "400":
+          description: Invalid ID supplied
+          content: {}
+        "404":
+          description: animal not found
+          content: {}
+components:
+  schemas:
+    Dog:
+      type: object
+      required:
+        - name
+        - owner
+        - bark
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        bark:
+          type: string
+    Cat:
+      type: object
+      required:
+        - name
+        - owner
+        - meow
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        owner:
+          type: string
+        meow:
+          type: string

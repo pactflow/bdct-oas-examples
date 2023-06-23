@@ -1,0 +1,51 @@
+{
+  "consumer": {
+    "name": "servers-consumer"
+  },
+  "provider": {
+    "name": "servers-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to get a Dog (mismatch)",
+      "request": {
+        "method": "GET",
+        "path": "/v1/animals/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Rover",
+          "owner": "Drover",
+          "bark": "dry"
+        }
+      }
+    },
+    {
+      "description": "a request to get a Dog (fail)",
+      "request": {
+        "method": "GET",
+        "path": "/animals/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Rover",
+          "owner": "Drover",
+          "bark": "dry"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
