@@ -14,3 +14,4 @@ This repository showcases use cases and features in OpenAPI, how they are compar
 | [Forms, Uploads and Binary](./examples/forms) | Forms, uploads and binary [request content](https://swagger.io/docs/specification/describing-request-body/) use cases |
 | [XML](./examples/xml) | XML content use cases |
 | [Servers](./examples/servers) | How to test with the use of `servers` |
+| [Negative Testing](./examples/negative) | How to test negative scenarios such as `40x` and `50x` responses |

@@ -1,0 +1,55 @@
+{
+  "consumer": {
+    "name": "negative-consumer"
+  },
+  "provider": {
+    "name": "negative-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to get a Dog",
+      "providerState": "there is a dog with an id of 1",
+      "request": {
+        "method": "GET",
+        "path": "/animals/1"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Rover",
+          "owner": "Drover",
+          "bark": "dry"
+        }
+      }
+    },
+    {
+      "description": "a request to get a Dog",
+      "providerState": "there is no dog with an id of 1",
+      "request": {
+        "method": "GET",
+        "path": "/animals/1"
+      },
+      "response": {
+        "status": 404
+      }
+    },
+    {
+      "description": "a request to get a Dog with an invalid property",
+      "request": {
+        "method": "GET",
+        "path": "/animals/dog"
+      },
+      "response": {
+        "status": 400
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
