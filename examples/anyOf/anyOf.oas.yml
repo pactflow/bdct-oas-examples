@@ -25,7 +25,6 @@ paths:
           content:
             "application/json":
               schema:
-                additionalProperties: true # <- Take note!
                 anyOf:
                   - $ref: '#/components/schemas/Cat'
                   - $ref: '#/components/schemas/Dog'
@@ -43,7 +42,6 @@ components:
         - name
         - owner
         - bark
-      additionalProperties: false
       properties:
         name:
           type: string
@@ -57,7 +55,6 @@ components:
         - name
         - owner
         - meow
-      additionalProperties: false
       properties:
         name:
           type: string

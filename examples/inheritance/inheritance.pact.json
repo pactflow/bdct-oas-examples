@@ -21,7 +21,8 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "pet_type": "Dog",
+          "petType": "Dog",
+          "name": "Doggy",
           "bark": true,
           "breed": "Dingo"
         }
@@ -42,7 +43,8 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "pet_type": "Cat",
+          "petType": "Cat",
+          "name": "Kitty",
           "hunts": true,
           "age": 6
         }

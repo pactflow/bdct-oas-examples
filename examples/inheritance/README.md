@@ -2,15 +2,11 @@
 
 This example takes demonstrates how type [inheritance and polymorphism](https://swagger.io/docs/specification/data-models/inheritance-and-polymorphism/) can be used with PactFlow's BDCT feature.
 
-As this inheritance pattern involves the use of `allOf` where each sub-schema needs to be combined before testing, the OAS needs to have the `allOf`s dereferenced first into a single schema.
-
-The transformed OAS uses the strategy outlined [here](https://docs.pactflow.io/docs/bi-directional-contract-testing/contracts/oas/keyword-support/#example-oneof-schema), using the [`oas-merge`](https://github.com/YOU54F/oas-merge) npm utility.
-
 ### Inheritance
 
-The value of `discrimator` should be narrowly specified by `enum` to a set that restricts its value to the desired possible schema subtypes. Otherwise, no subtype schema will be found, and any input will pass. In this case, we support [polymorphism](https://spec.openapis.org/oas/v3.1.0#composition-and-inheritance-polymorphism) via two schemas - Dog and Cat.
+For inheritance to work, you must use the `discrimator` to constrain and clarify the potential matching types.
 
-Where the polymorphic content is supplied, you need to set the `additionalProperties: true`:
+In this case, we support [polymorphism](https://spec.openapis.org/oas/v3.1.0#composition-and-inheritance-polymorphism) via two schemas - Dog and Cat.
 
 ```yml
       responses:
@@ -19,12 +15,13 @@ Where the polymorphic content is supplied, you need to set the `additionalProper
           content:
             "application/json":
               schema:
-                additionalProperties: true # <- take note!
                 oneOf:
                   - $ref: '#/components/schemas/Cat'
                   - $ref: '#/components/schemas/Dog'
                 discriminator:
-                  propertyName: pet_type
+                  propertyName: petType
+                required:
+                  - petType
 ```
 
 In the Definition of the schemas, you can then create a parent type (e.g. `Pet`) and use the `discriminator` property to signal how to differentate the allowed subtypes.
@@ -35,15 +32,26 @@ components:
     Pet:
       type: object
       required:
-        - pet_type
+        - petType
       properties:
-        pet_type:
+        petType:
           type: string
-          enum: [Cat, Dog] # <- take note. If this isn't specified it can accept any object
-      discriminator:
-        propertyName: pet_type
+          enum: [Cat, Dog] # You can either use an enum like this, or specify `const` values on the subschemas (used in the example)
     Cat:
       ... # the Cat specific fields
     Dog:
       ... # the Dog specific fields
 ```
+
+## Use of `discriminator`
+
+There are following requirements and limitations of using `discriminator` keyword:
+
+* `mapping` in discriminator object is not supported.
+* "implicit" discriminator values are not supported.
+* `oneOf` keyword must be present in the same schema.
+* `discriminator` property should be `required` either on the top level, or in all `oneOf` subschemas.
+* each `oneOf` subschema must have the `properties` keyword with `discriminator` property. The subschemas should be either inlined or * included as direct references (only `$ref` keyword without any extra keywords is allowed).
+* schema for `discriminator` property in each `oneOf` subschema must be `const` or `enum`, with unique values across all subschemas.
+
+Not meeting any of these requirements would fail schema compilation.

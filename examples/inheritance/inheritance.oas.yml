@@ -23,12 +23,13 @@ paths:
           content:
             "application/json":
               schema:
-                additionalProperties: true # <- take note!
                 oneOf:
                   - $ref: '#/components/schemas/Cat'
                   - $ref: '#/components/schemas/Dog'
                 discriminator:
-                  propertyName: pet_type
+                  propertyName: petType
+                required:
+                  - petType
         "400":
           description: Invalid ID supplied
           content: {}
@@ -40,14 +41,14 @@ components:
     Pet:
       type: object
       required:
-        - pet_type
+        - name
       properties:
-        pet_type:
+        name:
           type: string
-          enum: [Cat, Dog] # <- take note. If this isn't specified it can accept any object
-      discriminator:
-        propertyName: pet_type
-    Dog:     # "Dog" is a value for the pet_type property (the discriminator value)
+    Dog:
+      properties:
+        petType:
+          const: Dog # "Dog" is a value for the petType property (the discriminator value)
       allOf: # Combines the main `Pet` schema with `Dog`-specific properties 
         - $ref: '#/components/schemas/Pet'
         - type: object
@@ -58,7 +59,10 @@ components:
             breed:
               type: string
               enum: [Dingo, Husky, Retriever, Shepherd]
-    Cat:     # "Cat" is a value for the pet_type property (the discriminator value)
+    Cat:
+      properties:
+        petType:
+          const: Cat # "Cat" is a value for the petType property (the discriminator value)
       allOf: # Combines the main `Pet` schema with `Cat`-specific properties 
         - $ref: '#/components/schemas/Pet'
         - type: object

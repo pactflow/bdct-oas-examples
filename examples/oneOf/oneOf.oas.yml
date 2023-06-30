@@ -23,10 +23,13 @@ paths:
           content:
             "application/json":
               schema:
-                additionalProperties: true # <- Take note!
                 oneOf:
                   - $ref: '#/components/schemas/Cat'
                   - $ref: '#/components/schemas/Dog'
+                discriminator:
+                  propertyName: petType
+                required:
+                  - petType
         "400":
           description: Invalid ID supplied
           content: {}
@@ -41,8 +44,9 @@ components:
         - name
         - owner
         - bark
-      additionalProperties: false
       properties:
+        petType:
+          const: Dog # "Dog" is a value for the petType property (the discriminator value)
         name:
           type: string
         owner:
@@ -55,8 +59,9 @@ components:
         - name
         - owner
         - meow
-      additionalProperties: false
       properties:
+        petType:
+          const: Cat # "Cat" is a value for the petType property (the discriminator value)
         name:
           type: string
         owner:
