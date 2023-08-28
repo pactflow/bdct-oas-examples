@@ -1,0 +1,54 @@
+{
+  "consumer": {
+    "name": "animal-consumer"
+  },
+  "provider": {
+    "name": "animal-provider"
+  },
+  "interactions": [
+    {
+      "description": "a request to get a Dog",
+      "request": {
+        "method": "GET",
+        "path": "/animals/1",
+        "headers": {
+          "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "name": "Rover",
+          "detail": {
+            "foo": "bar",
+            "bar": false,
+            "baz": 1,
+            "bat": [
+              true,
+              "string",
+              1,
+              {
+                "foo": "bar",
+                "bar": false,
+                "baz": 1,
+                "bat": [
+                  "you get the idea..."  
+                ],
+                "qix": null
+              }
+            ],
+            "qix": null
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
