@@ -9,11 +9,27 @@
     {
       "description": "a request to create a new animal with x-www-form-urlencoded data",
       "request": {
-        "body": "",
-        "comment": "note the body above is empty but still passes validation. The correct body is in the Xbody field",
-        "Xbody": "name=Scratchy&genus=Cat&owner=Cat%20Lady",
+        "body": "name=Scratchy&genus=Cat&owner=Cat%20Lady",
         "headers": {
           "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "method": "POST",
+        "path": "/animals"
+      },
+      "response": {
+        "status": 201
+      }
+    },
+    {
+      "description": "a request to create a new animal with JSON encoded data",
+      "request": {
+        "body": {
+          "name": "Scratchy",
+          "genus": "Cat",
+          "owner": "Cat Lady"
+        },
+        "headers": {
+          "Content-Type": "application/json"
         },
         "method": "POST",
         "path": "/animals"
