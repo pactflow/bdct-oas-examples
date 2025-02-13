@@ -72,6 +72,36 @@ paths:
       responses:
         "200":
           description: successful operation
+  /query/style/form/single/string:
+    get:
+      summary: Query style form with single value string parameter
+      description: Query style form with single value string parameter
+      operationId: getQueryStyleFormSingleValueString
+      parameters:
+      - in: query
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: successful operation
+  /query/style/form/single/number:
+    get:
+      summary: Query style form with single value number parameter
+      description: Query style form with single value number parameter
+      operationId: getQueryStyleFormSingleValueNumber
+      parameters:
+      - in: query
+        name: id
+        required: true
+        schema:
+          type: number
+      responses:
+        "200":
+          description: successful operation
+        "400":
+          description: Invalid input
   /query/style/form/explode/true:
     get:
       summary: Query style form with explode true
