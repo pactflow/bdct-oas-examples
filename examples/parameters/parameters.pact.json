@@ -158,6 +158,89 @@
       "response": {
         "status": 200
       }
+    },
+    {
+      "description": "a request using form style with singe value query parameter string type",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/string",
+        "query": "name=fred"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with singe value query parameter string type (with pact query object)",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/string",
+        "query": {
+          "name": "fred"
+        },
+        "response": {
+          "status": 200
+        }
+      }
+    },
+    {
+      "description": "a request using form style with singe value query parameter number type",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/number",
+        "query": "id=1"
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "a request using form style with singe value query parameter number type (with pact query object)",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/number",
+        "query": {
+          "id": 1
+        }
+      },
+      "response": {
+        "status": 200
+      }
+    },
+    {
+      "description": "an invalid request using form style with singe value query parameter number type",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/number",
+        "query": "id=one"
+      },
+      "response": {
+        "status": 400
+      }
+    },
+    {
+      "description": "an invalid request using form style with singe value query parameter number type (with pact query object)",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/number",
+        "query": {
+          "id": "one"
+        }
+      },
+      "response": {
+        "status": 400
+      }
+    },
+    {
+      "description": "an invalid request using alphanumeric form style with singe value query parameter number type",
+      "request": {
+        "method": "GET",
+        "path": "/query/style/form/single/number",
+        "query": "id=1a"
+      },
+      "response": {
+        "status": 400
+      }
     }
   ],
   "metadata": {
