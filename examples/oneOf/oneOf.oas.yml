@@ -28,6 +28,9 @@ paths:
                   - $ref: '#/components/schemas/Dog'
                 discriminator:
                   propertyName: petType
+                  mapping: 
+                    notadog: '#/components/schemas/Dog'
+                    notacat: '#/components/schemas/Cat'
                 required:
                   - petType
         "400":

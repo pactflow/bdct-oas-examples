@@ -21,7 +21,7 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "petType": "Dog",
+          "petType": "notadog",
           "name": "Rover",
           "owner": "Drover",
           "bark": "dry"
@@ -43,7 +43,7 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "petType": "Cat",
+          "petType": "notacat",
           "name": "kitty",
           "owner": "crazy cat lady",
           "meow": "squeely"
@@ -65,7 +65,7 @@
           "Content-Type": "application/json"
         },
         "body": {
-          "petType": "Cat",
+          "petType": "notacat",
           "name": "kitty"
         }
       }
